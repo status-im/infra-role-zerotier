@@ -1,0 +1,15 @@
+---
+- name: Add APT signing key
+  apt_key:
+    id: '{{ zerotier_apt_gpg_key_id }}'
+    url: '{{ zerotier_apt_gpg_key_url }}'
+
+- name: 'Add APT repository'
+  apt_repository:
+    repo: '{{ zerotier_apt_repo }}'
+    filename: 'zerotier'
+    mode: 0644
+
+- name: Install client package
+  apt:
+    name: 'zerotier-one'
